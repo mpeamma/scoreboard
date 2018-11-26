@@ -1,0 +1,9 @@
+{
+    "SLACK_TOKEN": "puxr5kjTnqCRgmdYkLtLfo8y",
+    "KG_API_KEY": "AIzaSyDM0NLDWEzZR8mlFQVu8JRmfyh061pISVM",
+    "db_url": "ds111244.mlab.com",
+    "db_name": "scoreboard",
+    "db_port": 11244,
+    "db_user": "admin",
+    "db_pass": "R3placePlus"
+}

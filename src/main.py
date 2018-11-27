@@ -1,5 +1,6 @@
 import json
 from flask import jsonify
+from slackclient import SlackClient
 
 import util
 
@@ -15,11 +16,12 @@ def scoreboard(request):
     with open('config.json', 'r') as f:
         data = f.read()
     config = json.loads(data)
+    client = SlackClient(config["SLACK_BOT_TOKEN"])
 
-    #verify_web_hook(request.form)
+    verify_web_hook(request.form)
     score = util.connect(config)
     message = {
-        "text": util.handle_scoreboard(request.form.get("text"), request.form.get("user_id"), score),
+        "text": util.handle_scoreboard(request.form.get("text"), request.form.get("user_id"), score, client),
         "response_type": "in_channel"
     }
     return jsonify(message)

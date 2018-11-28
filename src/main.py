@@ -4,7 +4,7 @@ from slackclient import SlackClient
 
 import util
 
-def verify_web_hook(form):
+def verify_web_hook(form, config):
     if not form or form.get('token') != config['SLACK_TOKEN']:
         raise ValueError('Invalid request/credentials.')
 
@@ -18,7 +18,7 @@ def scoreboard(request):
     config = json.loads(data)
     client = SlackClient(config["SLACK_BOT_TOKEN"])
 
-    verify_web_hook(request.form)
+    verify_web_hook(request.form, config)
     score = util.connect(config)
     message = {
         "text": util.handle_scoreboard(request.form.get("text"), request.form.get("user_id"), score, client),
